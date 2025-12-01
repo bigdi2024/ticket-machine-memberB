@@ -1,5 +1,18 @@
+// Developer: Bogdan (Group Member B)
+// Class: AdminMenu
+// Description: User interface for administrator features. Allows viewing,
+// adding, and updating destinations, as well as adjusting pricing.
+
+/**
+ * Admin menu class enabling administrative control over destinations and pricing.
+ * Includes input validation to reduce errors and maintain data integrity.
+ */
 class AdminMenu(private val ticketMachine: TicketMachine) {
 
+    /**
+     * Shows all destinations currently registered in the system.
+     * Displays their pricing and number of sales for auditing.
+     */
     fun viewDestinations() {
         println("----- Destination List -----")
         if (ticketMachine.listDestinations().isEmpty()) {
@@ -12,6 +25,10 @@ class AdminMenu(private val ticketMachine: TicketMachine) {
         println("----------------------------")
     }
 
+    /**
+     * Adds a new destination to the list.
+     * Validates user input before updating the database.
+     */
     fun addDestination() {
         println("Enter station name:")
         val name = readLine()?.trim()
@@ -39,6 +56,10 @@ class AdminMenu(private val ticketMachine: TicketMachine) {
         println("Destination added successfully.")
     }
 
+    /**
+     * Updates ticket pricing for an existing station.
+     * Ensures only valid values are accepted.
+     */
     fun editDestination() {
         println("Enter the name of the station you want to edit:")
         val name = readLine()?.trim()
@@ -78,6 +99,10 @@ class AdminMenu(private val ticketMachine: TicketMachine) {
         }
     }
 
+    /**
+     * Modifies all ticket prices by a factor entered by the admin.
+     * Supports discount or inflation pricing strategies.
+     */
     fun changeAllPrices() {
         println("Enter price factor (e.g. 1.1 increases by 10%, 0.9 decreases by 10%):")
         val factorInput = readLine()
@@ -92,6 +117,10 @@ class AdminMenu(private val ticketMachine: TicketMachine) {
         println("All ticket prices updated by factor $factor.")
     }
 
+    /**
+     * Displays and controls admin menu navigation using a loop.
+     * Returns to previous context when user selects exit.
+     */
     fun showMenu() {
         while (true) {
             println()
